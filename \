@@ -1,19 +1,43 @@
 import { BaseClient } from "./base";
-type Image = {
+
+type BaseMessageProps = {
+  type: "text" | "image" | "audio" | "location" | "contacts";
+  recipient_number: string;
+  content: string;
+  context?: {
+    message_id: string;
+  };
+};
+
+interface ImageMessageProps extends BaseMessageProps {
+  type: "image";
+  image: {
     id?: string;
     link?: string;
+  };
 }
-type Audio = {
+
+interface AudioMessageProps extends BaseMessageProps {
+  type: "audio";
+  audio: {
     id?: string;
     link?: string;
+  };
 }
-type Location = {
+
+interface LocationMessageProps extends BaseMessageProps {
+  type: "location";
+  location: {
     latitude: string;
     longitude: string;
     name: string;
     address: string;
+  };
 }
-type Contacts = {
+
+interface ContactMessageProps extends BaseMessageProps {
+  type: "contacts";
+  contacts: {
     addresses?: {
       street?: string;
       city?: string;
@@ -48,21 +72,9 @@ type Contacts = {
     urls?: {
       url: string;
       type: "HOME" | "WORK";
-}
-}
-
-type BaseMessageProps = {
-  type: "text" | "image" | "audio" | "location" | "contacts";
-  recipient_number: string;
-  content: string;
-  context?: {
-    message_id: string;
+    }[];
   };
-  image?: Image 
-  audio?: Audio;
-  location?: Location;
-  contacts?: Contacts;
-};
+}
 
 export class MessagesClient extends BaseClient {
   private phoneId: number;
@@ -84,11 +96,12 @@ export class MessagesClient extends BaseClient {
     recipient_number,
     content,
     context,
-    image,
-    audio,
-    location,
-    contacts,
-  }: BaseMessageProps) {
+  }:
+    | BaseMessageProps
+    | ImageMessageProps
+    | AudioMessageProps
+    | ContactMessageProps
+    | LocationMessageProps) {
     return this.doRequest("POST", this.endpoint, {
       messaging_product: "whatsapp",
       recipient_type: "individual",
@@ -99,13 +112,8 @@ export class MessagesClient extends BaseClient {
         preview_url: false,
         body: content,
       },
-      image: image ?? undefined,
-      audio: audio ?? undefined,
-      location: location ?? undefined,
-      contacts: contacts ?? undefined,
     });
   }
-
   markAsRead({ message_id }) {
     return this.doRequest("POST", this.endpoint, {
       messaging_product: "whatsapp",

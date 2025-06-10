@@ -61,11 +61,18 @@ export class BaseClient {
 
     url = `${this.config.baseUrl}/${url}`;
 
+    const isMediaUpload = url.endsWith("/media");
+
     const options = {
       method: method.toUpperCase(),
       headers,
       url,
-      data: body ? JSON.stringify(body) : undefined,
+      data:
+        body && isMediaUpload
+          ? body
+          : body && !isMediaUpload
+            ? JSON.stringify(body)
+            : undefined,
     };
     console.log(options);
 
@@ -78,7 +85,7 @@ export class BaseClient {
 
     try {
       const res = await axios(options);
-      console.log(res)
+      console.log(res);
 
       this.lastResponse = { body: res.data, headers: res.headers };
       this.lastResponses.push(this.lastResponse);

@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
-import { env } from '@/env'
+import { env } from '../../../env'
 
 const token = env.WA_WEBHOOK_TOKEN;
 
