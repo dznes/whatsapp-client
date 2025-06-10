@@ -1,13 +1,13 @@
 {
-  "name": "whatapp",
-  "version": "1.0.0",
-  "description": "",
+  "name": "whatapp-server",
+  "version": "0.0.1",
+  "description": "Whatsapp Server By Dznes",
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "dznes",
   "license": "ISC",
   "packageManager": "pnpm@10.11.0",
   "devDependencies": {
