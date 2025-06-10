@@ -6,7 +6,9 @@ import { AppRoutes } from "./http/controller/routes";
 
 export const app = fastify({ logger: true });
 
-app.setErrorHandler((error, request, reply) => {
+app.register(AppRoutes)
+
+app.setErrorHandler((error, _request, reply) => {
   if (error instanceof ZodError) {
     return reply
       .status(400)
@@ -19,3 +21,4 @@ app.setErrorHandler((error, request, reply) => {
 
   return reply.status(500).send({ message: "Internal server error." });
 });
+
