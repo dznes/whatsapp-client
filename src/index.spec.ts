@@ -4,10 +4,6 @@ import { testEnv } from "./test/env"
 
 describe("Whatsapp Client tests", () => {
   const { WA_PHONE_NUMBER_ID, CLOUD_API_VERSION, CLOUD_API_ACCESS_TOKEN, TEST_RECIPIENT_NUMBER } = testEnv
-  const numberId = testEnv.WA_PHONE_NUMBER_ID
-  const version = testEnv.CLOUD_API_VERSION;
-  const token = testEnv.CLOUD_API_ACCESS_TOKEN;
-  const recipient_number = testEnv.TEST_RECIPIENT_NUMBER
 
   it("Should be able to init Whatsapp client", () => {
     const client = new WhatsappClient(CLOUD_API_ACCESS_TOKEN, CLOUD_API_VERSION, WA_PHONE_NUMBER_ID);

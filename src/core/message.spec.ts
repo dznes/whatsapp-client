@@ -1,4 +1,4 @@
-import { describe, it, assert, expect } from "vitest";
+import { describe, it, expect } from "vitest";
 import { MessagesClient } from "./message";
 import { testEnv } from "../test/env";
 
@@ -19,16 +19,17 @@ describe("Whatsapp Message Client", () => {
       WA_PHONE_NUMBER_ID,
     );
 
-    assert(client);
-    expect(client.token).toBeTruthy();
+    expect(client).toBeTruthy()
+    expect(client.token).toBe(CLOUD_API_ACCESS_TOKEN)
   });
+
   it("Should be able to send a message", async () => {
     const data = await client.send({
       type: "text",
       recipient_number: TEST_RECIPIENT_NUMBER,
       content: "Teste envio de mensagem pelo Whatsapp API Client",
     });
-    assert(data.messages[0].id);
+    expect(data.messages[0].id).toBeTruthy()
     expect(data.contacts[0].input === TEST_RECIPIENT_NUMBER);
   });
 
@@ -48,7 +49,7 @@ describe("Whatsapp Message Client", () => {
       },
       content: `Mensagem de responsta para a mensage de ID: ${messageId}`,
     });
-    assert(data.messages[0].id);
-    expect(data.contacts[0].input === TEST_RECIPIENT_NUMBER);
+    expect(data.messages[0].id).toBeTruthy()
+    expect(data.contacts[0].input).toBe(TEST_RECIPIENT_NUMBER)
   });
 });
