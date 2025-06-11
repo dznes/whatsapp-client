@@ -110,11 +110,11 @@ export class MessagesClient extends BaseClient {
     });
   }
 
-  markAsRead({ message_id }) {
+  markAsRead(messageId: string) {
     return this.doRequest("POST", this.endpoint, {
       messaging_product: "whatsapp",
       status: "read",
-      message_id,
+      message_id: messageId,
     });
   }
 }
