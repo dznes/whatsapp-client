@@ -4,7 +4,9 @@
   "description": "Whatsapp Server By Dznes",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx watch src/server.ts",
+    "test": "vitest run --dir src",
+    "test:watch": "vitest --dir src"
   },
   "keywords": [],
   "author": "dznes",

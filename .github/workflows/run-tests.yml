@@ -1,0 +1,17 @@
+name: CI
+on: push
+
+env:
+  WA_PHONE_NUMBER_ID: ${{secrets.WA_PHONE_NUMBER_ID}}
+  CLOUD_API_VERSION: ${{secrets.CLOUD_API_VERSION}}
+  CLOUD_API_ACCESS_TOKEN: ${{secrets.CLOUD_API_ACCESS_TOKEN}}
+  TEST_RECIPIENT_NUMBER: ${{secrets.TEST_RECIPIENT_NUMBER}}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+    - run: npm install
+    - run: npm test
