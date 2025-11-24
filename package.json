@@ -1,5 +1,5 @@
 {
-  "name": "whatapp-server",
+  "name": "@dzns/whatapp-server",
   "version": "0.0.1",
   "description": "Whatsapp Server By Dznes",
   "main": "index.js",

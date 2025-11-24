@@ -74,7 +74,7 @@ export class BaseClient {
             ? JSON.stringify(body)
             : undefined,
     };
-    console.log(options);
+    // console.log(options);
 
     this.lastRequest = { ...options, data: body };
     this.lastRequests.push(this.lastRequest);
@@ -85,7 +85,7 @@ export class BaseClient {
 
     try {
       const res = await axios(options);
-      console.log(res);
+      // console.log(res);
 
       this.lastResponse = { body: res.data, headers: res.headers };
       this.lastResponses.push(this.lastResponse);
