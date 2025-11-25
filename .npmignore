@@ -1,7 +1,9 @@
-node_modules
-src
+/node_modules
+/src
+
 .env
-secrets
+.DS_Store
+/secrets
 
 tsup.config.ts
 tsconfig.json
