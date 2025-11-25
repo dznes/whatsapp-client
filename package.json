@@ -2,7 +2,7 @@
   "name": "@dzns/whatapp-server",
   "version": "0.0.3",
   "description": "Whatsapp Server By Dznes",
-  "main": "./dist/index.js",
+  "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "scripts": {
