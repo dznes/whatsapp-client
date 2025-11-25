@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "test": "vitest run --dir src",
-    "test:watch": "vitest --dir src"
+    "test:watch": "vitest --dir src",
+    "build": "tsup-node"
   },
   "keywords": [],
   "author": "dznes",
